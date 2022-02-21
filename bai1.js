@@ -97,23 +97,23 @@ console.log(expectedTraineeArray);
 
 const gradeTrainee = grade => {
   let rank = "";
-  switch(grade) {
+  switch (grade) {
       case 'A':
           rank = 'Excellent';
           break;
-      case 'B': 
+      case 'B':
           rank = 'Good';
           break;
-      case 'C': 
+      case 'C':
           rank = 'Medium';
           break;
       case 'D':
           rank = 'Weak';
           break;
-      case 'E': 
+      case 'E':
           rank = 'Poor';
           break;
-      case 'F': 
+      case 'F':
           rank = 'Disbanded';
           break;
   }
@@ -145,9 +145,9 @@ console.log(underBTrainee);
 // -> nếu số các trainee với grade trên C = 0, alert ra "Failed training!"
 // *YOUR CODE HERRE *
 underCTrainee = traineeIterator.filter(trainee => trainee.grade < 'C')
-if(underCTrainee.length >= (traineeIterator.length * 0.5)) alert("Effective training!");
-else if(underCTrainee.length <= (traineeIterator.length * 0.3)) alert("Average training!");
-else if(underCTrainee.length == 0) alert("Failed training!");
+if (underCTrainee.length >= (traineeIterator.length * 0.5)) alert("Effective training!");
+else if (underCTrainee.length <= (traineeIterator.length * 0.3)) alert("Average training!");
+else if (underCTrainee.length == 0) alert("Failed training!");
 
 
 
@@ -175,7 +175,7 @@ FTrainee.forEach(F => alert(F.fullName));
 // *YOUR CODE HERRE *
 const arrGrade = [];
 
-traineeIterator.forEach(trainee => 
+traineeIterator.forEach(trainee =>
   arrGrade.push(trainee.grade)
 );
 
@@ -192,7 +192,7 @@ console.log(stringGrade);
 let input = 5;
 let arr = [];
 
-while(input > 0) {
+while (input > 0) {
   arr.push(input);
   input--;
 }
@@ -209,5 +209,49 @@ console.log(result);
 //11. (optional) Hãy tạo ra 1 mảng mới, sử dụng 1 trong các cấu trúc lặp đã học, trong đó có các phần tử 
 // - grade thấp nhất
 // - grade cao nhất
-// - grade trung bình dạng số, biết các giá trị tương ứng của từng grade như sau: A=1, B=2, ... , F=5
+// - grade trung bình dạng số, biết các giá trị tương ứng của từng grade như sau: A=1, B=2, ... , F=6
 // *YOUR CODE HERRE *
+let arr11 = [];
+let maxGrade = 'F';
+let minGrade = 'A';
+let sumGrade = 0;
+
+const gradeInNum = grade => {
+  let rank = 0;
+  switch (grade) {
+      case 'A':
+          rank = 1;
+          break;
+      case 'B':
+          rank = 2;
+          break;
+      case 'C':
+          rank = 3;
+          break;
+      case 'D':
+          rank = 4;
+          break;
+      case 'E':
+          rank = 5;
+          break;
+      case 'F':
+          rank = 6;
+          break;
+  }
+  return rank;
+}
+
+traineeIterator.forEach(trainee => {
+  if (trainee.grade < maxGrade) maxGrade = trainee.grade;
+  if (trainee.grade > minGrade) minGrade = trainee.grade;
+  sumGrade += gradeInNum(trainee.grade);
+})
+
+let obj11 = {};
+obj11.maxGrade = maxGrade;
+obj11.minGrade = minGrade;
+obj11.avaGrade = sumGrade / traineeIterator.length;
+
+arr11.push(obj11);
+
+console.log(arr11);
